@@ -25,51 +25,6 @@ let products = [
     },
 ];
 
-let drinks = [
-    {
-        title: 'Coca-Cola, 0.5 л',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/11/19/%D0%BA%D0%BE%D0%BB%D0%B0_05%D0%BB_640%D1%85441_%D0%BF%D1%80%D0%BE%D0%B7%D1%80_19.11.18.png',
-        description: '0.5 Л',
-        price: '2.1р'
-    },
-    {
-        title: 'Coca-Cola, 1 л',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/11/19/%D0%BA%D0%BE%D0%BB%D0%B0_1%D0%BB_640%D1%85441_%D0%BF%D1%80%D0%BE%D0%B7%D1%80_19.11.18.png',
-        description: '1 Л',
-        price: '2.8р'
-    },
-    {
-        title: 'Sprite',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/03/31/%D1%81%D0%BF%D1%80%D0%B0%D0%B9%D1%82_1%D0%BB_640%D1%85441_%D0%BF%D1%80%D0%BE%D0%B7%D1%80.png',
-        description: '1 Л',
-        price: '2.8р'
-    },
-    {
-        title: 'Fanta',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2017/03/15/F_Orange_1L.png',
-        description: '1 Л',
-        price: '2.8р'
-    },
-    {
-        title: 'RICH Апельсиновый',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/03/31/%D1%81%D0%BE%D0%BA_%D0%A0%D1%87%D0%B8_%D0%90%D0%BF%D0%B5%D0%BB%D1%8C%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9_1%D0%BB.png',
-        description: 'Натуральный апельсиновый сок. 1 Л',
-        price: '3.7р'
-    },
-    {
-        title: 'RICH Яблочный',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/03/31/%D0%A1%D0%BE%D0%BA_%D1%80%D0%B8%D1%87_%D1%8F%D0%B1%D0%BB%D0%BE%D1%87%D0%BD%D1%8B%D0%B9_1%D0%BB.png',
-        description: 'Натуральный яблочный сок. 1 Л',
-        price: '3.5р'
-    },
-    {
-        title: 'Bonaqua',
-        image: 'https://images.dominos.by/media/dominos/osg/api/2018/11/19/%D0%B1%D0%BE%D0%BD%D0%B0%D0%BA%D0%B2%D0%B0_%D0%BD-%D0%B3%D0%B0%D0%B7_05%D0%BB_640%D1%85441_%D0%BF%D1%80%D0%BE%D0%B7%D1%80_19.11.18.png',
-        description: '0.5 Л',
-        price: '1.4р'
-    }
-];
-
 let nav = [
     {
         text: 'Главная',
@@ -138,7 +93,7 @@ let Image = function (classNames, src, alt) {
     this.classNames = classNames || '';
     this.src = src;
     this.alt = alt || 'Broken image';
-    this.$template = $('<img/>')
+    this.$template = $('<images/>')
         .addClass(this.classNames)
         .attr({
             'src': this.src,
@@ -196,8 +151,5 @@ window.onload = function () {
         $('.foo').append(new Card(product.image, product.title, product.description, product.price, product.weight, product.shopping_basket));
     });
 
-    drinks.forEach(function (drink) {
-        $('.drinks-list').append(new Card(drink.title, drink.image, drink.description, drink.price));
-    });
 
 };

@@ -1,22 +1,23 @@
-const http = require("http");
-const fs = require("fs");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-http.createServer(function(request, response){
+const app = express();
 
-    console.log(`Запрошенный адрес: ${request.url}`);
-    // получаем путь после слеша
-    const filePath = request.url.substr(1);
-    // смотрим, есть ли такой файл
-    fs.access(filePath, fs.constants.R_OK, err => {
-        // если произошла ошибка - отправляем статусный код 404
-        if(err){
-            response.statusCode = 404;
-            response.end("Resourse not found!");
-        }
-        else{
-            fs.createReadStream(filePath).pipe(response);
-        }
-    });
-}).listen(3000, function(){
-    console.log("Server started at 3000");
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to bezkoder application." });
+});
+
+require("./app/routes/customer.routes.js")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
