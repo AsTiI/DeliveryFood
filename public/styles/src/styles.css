@@ -1,0 +1,182 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+header img {
+    width: 150px;
+}
+
+.flex-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-item {
+
+
+}
+
+#search {
+    width: 450px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+input {
+    outline: none;
+}
+
+.button {
+    padding: 15px 20px;
+    border: 1px solid deepskyblue;
+    border-radius: 4px;
+}
+
+.button:hover {
+    padding: 15px 20px;
+    background: deepskyblue;
+    color: #FFF;
+}
+
+.button:active {
+    padding: 13px 18px;
+    margin: 2px;
+}
+
+.nav-button {
+    padding: 5px 15px;
+    border: 1px solid deepskyblue;
+    border-radius: 4px;
+    background: aliceblue;
+    vertical-align: center;
+    user-select: none;
+}
+
+.nav-button:hover {
+    padding: 5px 15px;
+    background: deepskyblue;
+    color: #FFF;
+}
+
+.nav-button:active {
+    padding: 3px 13px;
+    margin: 2px;
+}
+
+.nav-button p {
+    display: inline-block;
+    line-height: 30px;
+}
+
+.nav-button img {
+    display: inline-block;
+    width: 15px;
+}
+
+.advertising {
+    height: 300px;
+    background: #ffbd3a;
+    position: relative;
+    overflow: hidden;
+}
+
+.advertising h1 {
+    font-size: 40px;
+    width: 400px;
+    margin-bottom: 25px;
+
+}
+
+.advertising h2 {
+    font-size: 25px;
+    width: 600px;
+    font-weight: 400;
+}
+
+.advertising .mess {
+    padding: 50px;
+    display: inline-block;
+}
+
+.advertising img {
+    position: absolute;
+    left: 65%;
+    top: -5%;
+
+}
+
+.card {
+    width: 250px;
+    padding: 10px;
+    margin: 20px 0;
+    text-align: center;
+    border: solid 1px #e3e3e3;
+    border-radius: 10px;
+
+}
+
+.card:hover {
+    border: solid 1px #c51424;
+    box-shadow: 1px 1px 3px 0px #c51424;
+}
+
+.card .product {
+    padding: 10px 0;
+}
+
+.card .image img{
+    width: 200px;
+}
+
+.card .price {
+    border-top: solid 1px #ececed;
+    padding: 10px 0;
+}
+.card .cost {
+    display: inline-block;
+    background: red;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.card .weight {
+    display: inline-block;
+}
+
+.card .purchase {
+    display: inline-block;
+    float: right;
+}
+.card .purchase img {
+    width: 30px;
+}
+
+footer {
+    background-color: dimgray;
+    height: 300px;
+}
+
+.foo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

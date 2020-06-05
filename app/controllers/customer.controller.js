@@ -1,4 +1,5 @@
 const Customer = require("../models/customer.model.js");
+const Vegetables_fruits = require("../models/customer.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -11,10 +12,22 @@ exports.create = (req, res) => {
 
     // Create a Customer
     const customer = new Customer({
-        email: req.body.email,
-        name: req.body.name,
-        active: req.body.active
+        name : req.body.name,
+        surname : req.body.surname,
+        patronymic : req.body.patronymic,
+        address : req.body.address,
+        phone : req.body.phone,
+        password : req.body.password
     });
+
+    const vegetables_fruits = new Vegetables_fruits({
+        name : req.body.name,
+        weight : req.body.weight,
+        description : req.body.description,
+        cost : req.body.cost,
+        image : req.body.image
+    });
+
 
     // Save Customer in the database
     Customer.create(customer, (err, data) => {
@@ -29,7 +42,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-    Customer.getAll((err, data) => {
+    Vegetables_fruits.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -39,6 +52,8 @@ exports.findAll = (req, res) => {
     });
 };
 
+
+/*
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
     Customer.findById(req.params.customerId, (err, data) => {
@@ -114,3 +129,5 @@ exports.deleteAll = (req, res) => {
         else res.send({ message: `All Customers were deleted successfully!` });
     });
 };
+
+*/

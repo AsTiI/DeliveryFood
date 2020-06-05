@@ -10,8 +10,30 @@ const Customer = function(customer) {
     this.password = customer.password;
 };
 
+const Vegetables_fruits = function(vegetables_fruits) {
+    this.name = vegetables_fruits.name;
+    this.weight = vegetables_fruits.weight;
+    this.description = vegetables_fruits.description;
+    this.cost = vegetables_fruits.cost;
+    this.image = vegetables_fruits.image || '../public/images/pomidor.png';
+
+};
+
+Vegetables_fruits.getAll = result => {
+    sql.query("SELECT v.name, v.weight, v.cost, v.image, m.name AS description FROM vegetables_fruits v, market m where v.market_id = m.idMarket", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log("vegetables_fruits: ", res);
+        result(null, res);
+    });
+};
+
 Customer.create = (newCustomer, result) => {
-    sql.query("INSERT INTO заказчик SET ?", newCustomer, (err, res) => {
+    sql.query("INSERT INTO customer SET ?", newCustomer, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -45,9 +67,11 @@ Customer.findById = (customerId, result) => {
 
 
  */
-/*
+
+
+
 Customer.getAll = result => {
-    sql.query("SELECT * FROM заказчик", (err, res) => {
+    sql.query("SELECT * FROM customer", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -59,7 +83,7 @@ Customer.getAll = result => {
     });
 };
 
- */
+
 
 /*
 Customer.updateById = (id, customer, result) => {
@@ -124,3 +148,4 @@ Customer.removeAll = result => {
  */
 
 module.exports = Customer;
+module.exports = Vegetables_fruits;
