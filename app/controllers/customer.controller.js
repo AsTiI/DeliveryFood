@@ -1,6 +1,19 @@
 const Customer = require("../models/customer.model.js");
 const Vegetables_fruits = require("../models/customer.model.js");
 
+
+/*
+const vegetables_fruits = new Vegetables_fruits({
+    name : req.body.name,
+    weight : req.body.weight,
+    description : req.body.description,
+    cost : req.body.cost,
+    image : req.body.image
+});
+
+ */
+
+
 // Create and Save a new Customer
 exports.create = (req, res) => {
     // Validate request
@@ -20,15 +33,6 @@ exports.create = (req, res) => {
         password : req.body.password
     });
 
-    const vegetables_fruits = new Vegetables_fruits({
-        name : req.body.name,
-        weight : req.body.weight,
-        description : req.body.description,
-        cost : req.body.cost,
-        image : req.body.image
-    });
-
-
     // Save Customer in the database
     Customer.create(customer, (err, data) => {
         if (err)
@@ -40,7 +44,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Customers from the database.
+// Retrieve all Vegetables_fruits from the database.
 exports.findAll = (req, res) => {
     Vegetables_fruits.getAll((err, data) => {
         if (err)

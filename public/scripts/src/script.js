@@ -22,7 +22,10 @@ let Card = function (image, title, description, price, weight, shopping_basket) 
             .addClass('price')
             .append($('<div/>')
                 .addClass('cost')
-                .append(this.$price))
+                .append(this.$price)
+                    .append($('<p/>')
+                        .append('руб.'))
+                )
             .append($('<div/>')
                 .addClass('weight')
                 .append(', за ' + this.$weight))
@@ -41,7 +44,7 @@ let Image = function (classNames, src, alt) {
     this.$template = $('<img/>')
         .addClass(this.classNames)
         .attr({
-            'src': this.src,
+            'src': 'img/' + this.src,
             'alt': this.alt
         });
 
@@ -91,17 +94,28 @@ Card.prototype = {
     }
 };
 
+function clearBox(elementID)
+{
+
+    document.querySelector(elementID).innerHTML  = "";
+}
+
 $(window).on('load',(function() {
+
     fetch('/aa')
         .then(response => response.json())
-        .then( data =>
-        {
-            console.log(data);
+        .then(data => {
+
             data.forEach(function (data) {
-                $('.foo').append(new Card(data.image, data.name, data.description, data.cost, data.weight));
+                $('.foo').append(new Card(data.image, data.name, data.description, data.cost, data.weight, data.shopping_basket));
             })
-        }
-        )}));
+        })
+    clearBox('.foo');
+}));
+
+
+
+
 
 
 

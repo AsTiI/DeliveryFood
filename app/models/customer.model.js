@@ -15,7 +15,8 @@ const Vegetables_fruits = function(vegetables_fruits) {
     this.weight = vegetables_fruits.weight;
     this.description = vegetables_fruits.description;
     this.cost = vegetables_fruits.cost;
-    this.image = vegetables_fruits.image || '../public/images/pomidor.png';
+    this.image = vegetables_fruits.image || 'img/pomidor.png';
+    this.shopping_basket = '../public/images/shopping_basket.png';
 
 };
 
@@ -27,7 +28,7 @@ Vegetables_fruits.getAll = result => {
             return;
         }
 
-        console.log("vegetables_fruits: ", res);
+        //console.log("vegetables_fruits: ", res);
         result(null, res);
     });
 };

@@ -3,11 +3,13 @@ module.exports = app => {
     const vegetables_vruits = require("../controllers/customer.controller.js");
 
     // Create a new Customer
-    app.post("/customers", customers.create);
+    app.post("/registration", customers.create);
 
 
     // Retrieve all Customers
     app.get("/aa", vegetables_vruits.findAll);
+
+    //app.post("/login", login.equal);
 
 /*
     // Retrieve a single Customer with customerId

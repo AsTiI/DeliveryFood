@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style/index.min.css">
+    <link rel="stylesheet" type="text/css" href="../public/styles/src/login.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="page-form">
+        <div class="reg-tabs">
+            <div class="tab-1">
+                <div class="form">
+                    <form if="form-reg" action="/registration" method="post">
+                        <div class="surname" id="surname">
+                            <label for="surname">Ваша фамилия</label>
+                        </div>
+                        <div class="name" id="name">
+                            <label for="name">Имя</label>
+                        </div>
+                        <div class="patronomyc" id="patronomic">
+                            <label for="patronomic">Отчёство</label>
+                        </div>
+                        <div class="birthday" id="birthday">
+                            <label for="birthday">Дата рождения</label>
+                        </div>
+                        <div class="number">
+                            <label for="username" >Номер телефона</label>
+                            <input type="text" placeholder="+375 (__) ___-__-__" name="username" id="username">
+                        </div>
+                        <div class="separator" id="form-separator">
+                            <label for="form-separator">Укажите ваш адрес</label>
+                        </div>
+
+                        <div class="password">
+                            <label for="password" >Пароль</label>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <div class="submit">
+                            <input type="submit" name="submit" id="submit" value="Создать">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-2">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+    <script src="./js/libs.min.js"></script>
+    <script src="./js/index.min.js"></script>
+</html>
