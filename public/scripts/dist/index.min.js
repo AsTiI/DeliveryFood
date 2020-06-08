@@ -4,7 +4,7 @@ let Card = function (image, title, description, price, weight, shopping_basket) 
     this.$description = new Paragraph(description, 'item-description');
     this.$price = new Paragraph(price, 'item-price');
     this.$weight = weight;
-    this.$shopping_basket = shopping_basket;
+    this.$shopping_basket = new Image('item-image', shopping_basket);
     this.$template = $('<div/>')
         .addClass('card')
         .append($('<div/>')
@@ -31,7 +31,7 @@ let Card = function (image, title, description, price, weight, shopping_basket) 
                 .append(', за ' + this.$weight))
             .append($('<div/>')
                 .addClass('purchase')
-                .append(this.$shopping_basket)))
+                .append(this.$shopping_basket)));
 
     this.initEvents();
     return this.$template;
@@ -49,6 +49,45 @@ let Image = function (classNames, src, alt) {
         });
 
     return this.$template;
+};
+
+let Footer = function (image1, image2, image3, image4, image5, copywriter) {
+    this.$image1 = new Image('item-image', image1);
+    this.$image2 = new Image('item-image', image2);
+    this.$image3 = new Image('item-image', image3);
+    this.$image4 = new Image('item-image', image4);
+    this.$image5 = new Image('item-image', image5);
+    this.$copywriter = copywriter;
+    this.$template = $('.footer')
+        .append($('<div/>')
+            .addClass('flex-wrapper')
+            .append($('<div/>')
+                .addClass('flex-item')
+                .append($('<div/>')
+                    .append(this.$image1)))
+            .append($('<div/>')
+                .addClass('flex-item')
+                .append($('<div/>')
+                    .append(this.$image2)))
+            .append($('<div/>')
+                .addClass('flex-item')
+                .append($('<div/>')
+                    .append(this.$image3)))
+            .append($('<div/>')
+                .addClass('flex-item')
+                .append($('<div/>')
+                    .append(this.$image4)))
+            .append($('<div/>')
+                .addClass('flex-item')
+                .append($('<div/>')
+                    .append(this.$image5))))
+        .append($('<div/>')
+            .addClass('copywriter')
+            .append($('<p/>')
+                .append(this.$copywriter)));
+
+    return this.$template;
+
 };
 
 let Button = function (text, classNames) {
@@ -94,39 +133,78 @@ Card.prototype = {
     }
 };
 
-function clearBox(elementID)
+function removeBox(elementID)
 {
-
-    document.querySelector(elementID).innerHTML  = "";
+    document.querySelector(elementID).remove();
 }
 
+let input,search,pr,result,result_arr, locale_HTML;
+
+function func() {
+    locale_HTML = document.querySelector('.product-cards').innerHTML;   // сохраняем в переменную весь body (Первоначальный)
+}
+setTimeout(func, 1000);  //ждем подгрузки Jsona и выполняем
+
+function FindOnPage(name, status) {
+    input = document.getElementById(name).value; //получаем значение из поля в html
+
+    if(input.length<3&&status==true)
+    {
+        alert('Для поиска вы должны ввести три или более символов');
+        function FindOnPageBack() { document.querySelector('.product-cards').innerHTML = locale_HTML; }
+    }
+
+    if(input.length>=3)
+    {
+        function FindOnPageGo() {
+
+            search = '/'+input+'/g';  //делаем из строки регуярное выражение
+            pr = document.querySelector('.product-cards').innerHTML;   // сохраняем в переменную cards
+            result = pr.match(/>(.*?)</g);  //отсекаем все теги и получаем только текст
+            result_arr = [];   //в этом массиве будем хранить результат работы (подсветку)
+
+            let warning = true;
+            for(let i=0;i<result.length;i++) {
+                if(result[i].match(eval(search))!=null) {
+                    warning = false;
+                }
+
+            }
+            if(warning == true) {
+                alert('Не найдено ни одного совпадения');
+            }
+
+            for(let i=0; i<result.length;i++) {
+                result_arr[i] = result[i].replace(eval(search), '<span style="background-color:yellow;">'+input+'</span>'); //находим нужные элементы, задаем стиль и сохраняем в новый массив
+            }
+            for(let i=0; i<result.length;i++) {
+                pr=pr.replace(result[i],result_arr[i])  //заменяем в переменной с html текст на новый из нового массива
+            }
+            document.querySelector('.product-cards').innerHTML = pr;  //заменяем код cards
+        }
+    }
+    function FindOnPageBack() { document.querySelector('.product-cards').innerHTML = locale_HTML; }
+    if(status) { FindOnPageBack(); FindOnPageGo(); } //чистим прошлое и Выделяем найденное
+    if(!status) { FindOnPageBack(); } //Снимаем выделение
+}
+
+
+
+
+
+
 $(window).on('load',(function() {
+
+
 
     fetch('/aa')
         .then(response => response.json())
         .then(data => {
 
             data.forEach(function (data) {
-                $('.foo').append(new Card(data.image, data.name, data.description, data.cost, data.weight, data.shopping_basket));
+                $('main').append(new Card(data.image, data.name, data.description, data.cost, data.weight, 'shopping_basket.png'));
             })
         })
-    clearBox('.foo');
+    $('.footer').append(new Footer('instagram-sketched.svg','facebook.svg','twitter.svg','vk.svg','telegram.svg', '© 2020. All Rights Reserved.'));
+
 }));
-
-
-
-
-
-
-
-
-
-
-
-/*
-    products.forEach(function (product) {
-        $('.foo').append(new Card(product.image, product.title, product.description, product.price, product.weight, product.shopping_basket));
-    });
-
- */
-

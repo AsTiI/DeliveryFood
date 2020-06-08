@@ -15,7 +15,12 @@
                     <img src="img/logo.png" alt="logo">
                 </div>
                 <div class="flex-item">
-                    <input id="search" type="search" name="search" placeholder="Поиск...">
+
+                    <form>
+                        <input class="search place_for_search" type="search" id="text-to-find" value="" placeholder="Поиск..." autofocus>
+                        <input class="button_for_turn_back" type="button" onclick="FindOnPage('text-to-find',false)" value=" " title="Отменить поиск">
+                        <input class="button_for_search" type="submit" onclick="FindOnPage('text-to-find',true)" value=" " title="Начать поиск">
+                    </form>
 
                 </div>
                 <div class="flex-item">
@@ -36,15 +41,18 @@
         </section>
 
         <nav>
-
+            <div class="flex-wrapper">
+                <div class="flex-item menu-item-1">Овощи и фрукты</div>
+                <div class="flex-item menu-item-2">Молочная продукция</div>
+                <div class="flex-item menu-item-3">Мясо, рыба, колбаса</div>
+                <div class="flex-item menu-item-4">Хлебобулочные изделия</div>
+                <div class="flex-item menu-item-5">Безалкогольные напитки</div>
+            </div>
         </nav>
-        <main class="foo">
-
+        <main class="product-cards">
         </main>
-
     </div>
-    <footer>
-
+    <footer class="footer">
     </footer>
 
     <script src="./js/libs.min.js"></script>
