@@ -4,37 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="style/index.min.css">
-    <link rel="stylesheet" type="text/css" href="../public/styles/src/login.css">
 </head>
 <body>
 
 </body>
-    <div class="login-container">
-        <div class="page-form">
-            <div class="login-tabs">
-                <div class="tab-1">
-                    <div class="form">
-                        <form if="form-login" action="/login" method="post">
-                            <div class="number">
-                                <label for="username" >Номер телефона</label>
-                                <input type="text" placeholder="+375 (__) ___-__-__" name="username" id="username">
-                            </div>
-                            <div class="password">
-                                <label for="password" >Пароль</label>
-                                <input type="password" name="password" id="password">
-                            </div>
-                            <div class="submit">
-                                <input type="submit" name="submit" id="submit" value="Войти">
-                            </div>
-                        </form>
+<div>
+    <div class="container-login ">
+        <div class="wrap-login">
+            <form class="login-form validate-form">
+                <span class="login-form-title">
+                    Welcome
+                </span>
+                <div class="wrap-input100 " data-validate = "Valid email is: a@b.c">
+                    <input class="input100" type="text" name="email">
+                    <span class="focus-input100" data-placeholder="Email"></span>
+                </div>
+
+                <div class="wrap-input100" data-validate="Enter password">
+                    <input class="input100" type="password" name="pass">
+                    <span class="focus-input100" data-placeholder="Password"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
                     </div>
                 </div>
-                <div class="tab-2">
-
+                <div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+                    <a class="txt2" href="#">
+                        Sign Up
+                    </a>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
     <script src="./js/libs.min.js"></script>
     <script src="./js/index.min.js"></script>
 </html>

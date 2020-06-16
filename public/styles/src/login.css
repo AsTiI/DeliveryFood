@@ -1,18 +1,11 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 .login-container {
 
-    background: #00204d;
 }
 
 .page-form {
-    background: aliceblue;
-    width: 600px;
-    height: 500px;
-    margin: 0 auto;
+    width: 390px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 77px 55px 33px 55px;
 }
-

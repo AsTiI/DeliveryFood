@@ -1,4 +1,16 @@
 const sql = require("./db.js");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+/*
+// Load hash from your password DB.
+bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+    // result == true
+});
+bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
+    // result == false
+});
+ */
+
 
 // constructor
 const Customer = function(customer) {
@@ -7,48 +19,73 @@ const Customer = function(customer) {
     this.patronymic = customer.patronymic;
     this.address = customer.address;
     this.phone = customer.phone;
+    this.mail = customer.mail;
     this.password = customer.password;
 };
 
-const Vegetables_fruits = function(vegetables_fruits) {
-    this.name = vegetables_fruits.name;
-    this.weight = vegetables_fruits.weight;
-    this.description = vegetables_fruits.description;
-    this.cost = vegetables_fruits.cost;
-    this.image = vegetables_fruits.image || 'img/pomidor.png';
-    this.shopping_basket = '../public/images/shopping_basket.png';
-
-};
-
-Vegetables_fruits.getAll = result => {
-    sql.query("SELECT v.name, v.weight, v.cost, v.image, m.name AS description FROM vegetables_fruits v, market m where v.market_id = m.idMarket", (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
-
-        //console.log("vegetables_fruits: ", res);
-        result(null, res);
-    });
-};
-
 Customer.create = (newCustomer, result) => {
-    sql.query("INSERT INTO customer SET ?", newCustomer, (err, res) => {
+    bcrypt.hash(newCustomer.password, saltRounds, function(err, hash) {
+        // Store hash in your password DB.
+        sql.query(`INSERT INTO customer SET name='${newCustomer.name}', surname='${newCustomer.surname}',patronymic='${newCustomer.patronymic}',address='${newCustomer.address}',phone='${newCustomer.phone}' ,mail='${newCustomer.mail}' ,password='${hash}'`, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            result(null, res);
+            /*
+            result(null, {
+                id: res.insertId, ...newCustomer
+            });
+             */
+
+        });
+    });
+
+
+};
+
+Customer.compare = (newCustomer, result) => {
+    sql.query(`SELECT mail, phone FROM customer`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
+        result(null, res);
+        for (let i = 0; i < res.length; i++) {
+            if (newCustomer.mail === res[i].mail) {
+                console.log('МЫЛО НЕ ПРАВИЛЬНОЕ!!!');
+                result(null, null);
+                return;
+            }
+            if (newCustomer.phone === res[i].phone)
+            {
+                console.log('ТЕЛЕФОН УЖЕ ЗАРЕГАН');
+                result(null, null);
+                return;
+            }
+        }
+    })
+};
 
-        console.log("created customer: ", { id: res.insertId, ...newCustomer });
-        result(null, { id: res.insertId, ...newCustomer });
+Customer.getAll = result => {
+    sql.query("SELECT * FROM customer", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("customers: ", res);
+        result(null, res);
     });
 };
 
+
+
 /*
-Customer.findById = (customerId, result) => {
-    sql.query(`SELECT * FROM заказчик WHERE id = ${customerId}`, (err, res) => {
+Customer.findByPhone = (phone, result) => {
+    sql.query(`SELECT phone,password FROM customer WHERE phone = ${phone}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -66,25 +103,25 @@ Customer.findById = (customerId, result) => {
     });
 };
 
-
- */
-
-
-
-Customer.getAll = result => {
-    sql.query("SELECT * FROM customer", (err, res) => {
+Customer.findById = (customerId, result) => {
+    sql.query(`SELECT * FROM customer WHERE id = ${customerId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
-            result(null, err);
+            result(err, null);
             return;
         }
 
-        console.log("customers: ", res);
-        result(null, res);
+        if (res.length) {
+            console.log("found customer: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+
+        // not found Customer with the id
+        result({ kind: "not_found" }, null);
     });
 };
-
-
+ */
 
 /*
 Customer.updateById = (id, customer, result) => {
@@ -147,6 +184,4 @@ Customer.removeAll = result => {
 };
 
  */
-
 module.exports = Customer;
-module.exports = Vegetables_fruits;

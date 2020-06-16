@@ -1,20 +1,6 @@
 const Customer = require("../models/customer.model.js");
-const Vegetables_fruits = require("../models/customer.model.js");
 
-
-/*
-const vegetables_fruits = new Vegetables_fruits({
-    name : req.body.name,
-    weight : req.body.weight,
-    description : req.body.description,
-    cost : req.body.cost,
-    image : req.body.image
-});
-
- */
-
-
-// Create and Save a new Customer
+// Create, Compare and Save a new Customer
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -22,7 +8,6 @@ exports.create = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-
     // Create a Customer
     const customer = new Customer({
         name : req.body.name,
@@ -30,8 +15,19 @@ exports.create = (req, res) => {
         patronymic : req.body.patronymic,
         address : req.body.address,
         phone : req.body.phone,
+        mail : req.body.mail,
         password : req.body.password
     });
+    // Customer.compare(customer, (err, data) => {
+    //     if (err){
+    //         res.send({
+    //             message: "Some error occurred while creating the Customer."
+    //         });
+    //     }
+    //     if(data)
+    //          res.send(data);
+    // });
+    // console.log('Код продолжается!');
 
     // Save Customer in the database
     Customer.create(customer, (err, data) => {
@@ -44,9 +40,8 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Vegetables_fruits from the database.
 exports.findAll = (req, res) => {
-    Vegetables_fruits.getAll((err, data) => {
+    Customer.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -55,6 +50,8 @@ exports.findAll = (req, res) => {
         else res.send(data);
     });
 };
+
+
 
 
 /*

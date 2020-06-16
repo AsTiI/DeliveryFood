@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+
+}
+
+.reg-tabs input {
+    border: 1px solid black;
+}
+
 li {
     list-style: none;
 }
@@ -29,8 +37,7 @@ header img {
 }
 
 .flex-item {
-
-
+    transition: all 0.4s;
 }
 
 .search {
@@ -49,12 +56,14 @@ input {
     padding: 15px 20px;
     border: 1px solid deepskyblue;
     border-radius: 4px;
+
 }
 
 .button:hover {
     padding: 15px 20px;
     background: deepskyblue;
     color: #FFF;
+
 }
 
 .button:active {
@@ -69,6 +78,7 @@ input {
     background: aliceblue;
     vertical-align: center;
     user-select: none;
+    transition: all 0.4s;
 }
 
 .nav-button:hover {
@@ -97,7 +107,7 @@ input {
     background: #ffbd3a;
     position: relative;
     overflow: hidden;
-    margin-bottom: 350px;
+    //margin-bottom: 350px;
 }
 
 .advertising h1 {
@@ -144,6 +154,7 @@ nav .flex-item:hover {
     text-align: center;
     border: 1px solid  #c51424;
 
+
 }
 
 nav .flex-item:active {
@@ -163,7 +174,7 @@ nav .flex-item:active {
     text-align: center;
     border: solid 1px #e3e3e3;
     border-radius: 10px;
-
+    transition: all 0.3s;
 }
 
 .card:hover {
@@ -184,6 +195,7 @@ nav .flex-item:active {
     border-top: solid 1px #ececed;
     padding: 10px 0;
 }
+
 .card .cost {
     display: inline-block;
     background: red;
@@ -201,6 +213,24 @@ nav .flex-item:active {
 }
 .card .purchase img {
     width: 30px;
+}
+
+.card .title {
+    height: 50px;
+    position: relative;
+}
+
+.card .item-name    {
+    position: absolute;
+    top: 15%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.card .item-description {
+    padding: 5px 0;
+
 }
 
 footer {

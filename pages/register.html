@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="style/index.min.css">
-    <link rel="stylesheet" type="text/css" href="../public/styles/src/login.css">
+    <link rel="stylesheet" type="text/css" href="../public/styles/src/styles.css">
 </head>
 <body>
 <div class="login-container">
@@ -13,26 +13,30 @@
             <div class="tab-1">
                 <div class="form">
                     <form if="form-reg" action="/registration" method="post">
-                        <div class="surname" id="surname">
+                        <div class="surname">
                             <label for="surname">Ваша фамилия</label>
+                            <input type="text" placeholder="" name="surname"  id="surname">
                         </div>
-                        <div class="name" id="name">
+                        <div class="name" >
                             <label for="name">Имя</label>
+                            <input type="text" placeholder="" name="name"  id="name">
                         </div>
-                        <div class="patronomyc" id="patronomic">
-                            <label for="patronomic">Отчёство</label>
+                        <div class="patronymic" >
+                            <label for="patronymic">Отчёство</label>
+                            <input type="text" placeholder="" name="patronymic"  id="patronymic">
                         </div>
-                        <div class="birthday" id="birthday">
-                            <label for="birthday">Дата рождения</label>
+                        <div class="phone">
+                            <label for="phone" >Номер телефона</label>
+                            <input type="text" placeholder="+375 (__) ___-__-__" name="phone" id="phone">
                         </div>
-                        <div class="number">
-                            <label for="username" >Номер телефона</label>
-                            <input type="text" placeholder="+375 (__) ___-__-__" name="username" id="username">
+                        <div class="separator" >
+                            <label for="address">Укажите ваш адрес</label>
+                            <input type="text" placeholder="" name="address" id="address">
                         </div>
-                        <div class="separator" id="form-separator">
-                            <label for="form-separator">Укажите ваш адрес</label>
+                        <div class="mail">
+                            <label for="mail" >Номер телефона</label>
+                            <input type="text" placeholder="" name="mail" id="mail">
                         </div>
-
                         <div class="password">
                             <label for="password" >Пароль</label>
                             <input type="password" name="password" id="password">
